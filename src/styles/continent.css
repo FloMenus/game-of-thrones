@@ -39,7 +39,8 @@ ul {
   border: 4px solid rgb(255, 255, 255);
   border-radius: 15%;
   padding: 10px;
-  background: #13274f;
+  background: rgb(12,101,115);
+  background: linear-gradient(90deg, rgba(12,101,115,0.6026785714285714) 0%, rgba(15,123,140,0.5746673669467788) 100%);
   color: aliceblue;
   font-size: 50px;
   margin-bottom: 30px;

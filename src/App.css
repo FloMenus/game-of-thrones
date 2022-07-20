@@ -30,16 +30,24 @@ ul {
 }
 
 html {
-  background-color: #002244;
+  
+  background: rgb(3,49,56);
+  background: linear-gradient(90deg, rgba(3,49,56,1) 0%, rgba(11,35,105,1) 100%);
 }
 
 h1 {
   text-align: center;
-  margin: 0 auto;
-  margin: 50px 0px 30px 0px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 100px 10px 30px 10px;
+  font-family: 'Roboto', sans-serif;
   font-size: 90px;
   color: aliceblue;
+}
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+}
+p {
+  font-family: 'Roboto', sans-serif;
 }
 
 .characters-wrapper {
@@ -64,9 +72,13 @@ h1 {
   gap: 20px;
 }
 form {
+  display: flex;
+  align-items: center;
   text-align: center;
   margin-bottom: 30px;
   color: aliceblue;
+  margin-left: 30px;
+  gap: 5px;
 }
 form label {
   font-size: 20px;
@@ -80,13 +92,16 @@ nav {
   gap: 20px;
   background-color: #041E42;
   padding: 20px;
+  position: fixed;
+  width: 100%;
+  top:0px;
 }
 nav button {
   background-color: #1F305E;
   color: white;
   padding: 10px 22px;
   border-radius: 1000px;
-}
+  }
 
 .favorite {
   background-color: yellow;

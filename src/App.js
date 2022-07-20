@@ -14,28 +14,35 @@ class App extends React.Component {
       continentsEnabled: false,
     };
   }
+
   async componentDidMount() {
-    const responseChar = await fetch(
+    const responseCharacter = await fetch(
       "https://thronesapi.com/api/v2/Characters"
     );
-    const fetchedChar = await responseChar.json();
-    const responseCont = await fetch(
+    const fetchedCharacter = await responseCharacter.json();
+
+    const responseContinent = await fetch(
       "https://thronesapi.com/api/v2/Continents"
     );
-    const fetchedCont = await responseCont.json();
-
+    const fetchedContinent = await responseContinent.json();
     this.setState({
-      characters: fetchedChar,
-      continents: fetchedCont,
+      characters: fetchedCharacter,
+      continents: fetchedContinent,
     });
   }
 
   handleFavoriteClick = (character) => {
-    const cloneFavorites = [...this.state.favorites, character];
-    this.setState({
-      favorites: cloneFavorites,
-    });
-    console.log(this.state.favorites);
+    const { favorites } = this.state;
+    const existingFavorite = favorites.find(
+      (favorite) => favorite.id === character.id
+    );
+    if (!existingFavorite) {
+      const cloneFavorites = [...this.state.favorites, character];
+      this.setState({
+        favorites: cloneFavorites,
+      });
+      console.log(this.state.favorites);
+    }
   };
 
   handleFavoriteDisplay = () => {
@@ -86,16 +93,18 @@ class App extends React.Component {
                 id="favorite-radio"
                 onChange={this.handleFavoriteDisplay}
               />
-              <label htmlFor="favorite-radio">Favoris</label>
+              <label htmlFor="favorite-radio"><p>Afficher les favoris</p></label>
+              <p>({this.state.favorites.length})</p>
             </form>
             {!this.state.favoritesEnabled && (
               <div className="characters-wrapper">
                 {this.state.characters.map((character) => (
                   <Character
+                    key={`${character.fullName}${character.id}`}
                     name={character.fullName}
                     title={character.title}
                     image={character.imageUrl}
-                    onClick={() => this.handleFavoriteClick(character)}
+                    addToFavorites={() => this.handleFavoriteClick(character)}
                   />
                 ))}
               </div>
@@ -104,10 +113,10 @@ class App extends React.Component {
               <div className="characters-wrapper">
                 {this.state.favorites.map((character) => (
                   <Character
+                    key={`${character.fullName}${character.id}`}
                     name={character.fullName}
                     title={character.title}
                     image={character.imageUrl}
-                    onClick={() => this.handleFavoriteClick(character)}
                   />
                 ))}
               </div>
